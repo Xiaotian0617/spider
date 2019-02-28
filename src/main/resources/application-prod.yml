@@ -1,0 +1,16 @@
+spring:
+  influxdb:
+    url: http://54.238.212.120
+    port: 8086
+    user-name: root
+    password: admin
+    data-base: TopCoinDB
+    retention-policy: autogen
+    gzip: false
+    connect-timeout: 10
+    read-timeout: 30
+    write-timeout: 10
+logging:
+  level:
+    root: info
+    com.al.dbspider: debug

@@ -1,0 +1,143 @@
+spring:
+  influxdb:
+    url: http://47.75.213.255
+    port: 8086
+    user-name: root
+    password: admin
+    data-base: TopCoinDB
+    retention-policy: autogen
+    gzip: true
+    connect-timeout: 10
+    read-timeout: 30
+    write-timeout: 10
+  redis:
+      host: 47.98.56.206
+      port: 6379
+      password: redis
+      database: 8
+      pool:
+        max-active: 800   # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: 500      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 800       # 连接池中的最大空闲连接
+        min-idle: 20       # 连接池中的最小空闲连接
+      timeout: 500        # 连接超时时间（毫秒）
+logging:
+  #config: file:config/logback-spring.xml
+  level:
+    root: info
+    com.al.dbspider: info
+    com.al.dbspider.newExchange: info
+    com.al.dbspider.websocket.OKExWebsocket: info
+    com.al.dbspider.websocket.HuobiWebsocket: info
+    com.al.dbspider.websocket.CoinBaseWebsocket: info
+    com.al.dbspider.newExchange.BitmexDP: debug
+api:
+  socket: http://47.97.169.136:1903/
+
+websocket: #api for websocket
+  huobi:
+    depth: false
+    kline: true
+    trade: true
+    disable: true
+  bibox:
+    disable: true
+  okex:
+    depth: false
+    kline: true
+    index: true
+    disable: false
+  bitfinex:
+    disable: true
+  okex-new:
+    disable: true
+  binance:
+    depth: false
+    kline: false
+    trade: false
+    disable: true
+  zb:
+    disable: true
+  coin900:
+    disable: true
+  bitstamp:
+    disable: true
+  topcoinws:
+    disable: true
+  fcoin:
+    disable: true
+  Gate:
+    disable: true
+  bitmex:
+    disable: true
+    kline: true
+    depth: true
+    trade: true
+  coinbase:
+    disable: true
+rest: #api for rest
+  aex:
+    disable: true
+  allcoin:
+    disable: true
+  bibox:
+    disable: true
+  bitfinex:
+    disable: true
+  fcoin:
+    disable: true
+  bigone:
+    disable: true
+  binance:
+    disable: true
+  bitflyer:
+    disable: true
+  bithumb:
+    disable: true
+  bitstamp:
+    disable: true
+  bittrex:
+    disable: true
+  bitz:
+    disable: true
+  cex:
+    disable: true
+  coinegg:
+    disable: true
+  coinmarketcap:
+    disable: true
+  coinone:
+    disable: true
+  gate:
+    disable: true
+  huobi:
+    disable: true
+  korbit:
+    disable: true
+  kraken:
+    disable: true
+  liqui:
+    disable: true
+  okex:
+    disable: true
+  poloniex:
+    disable: true
+  coin900:
+    disable: true
+  ucoin:
+    disable: true
+  zb:
+    disable: true
+  smsurl:
+    disable: true
+  kucoin:
+    disable: true
+  bcex:
+    disable: true
+  coinw:
+    disable: true
+  linkbitc:
+    disable: true
+  aicoin:
+    disable: true
+

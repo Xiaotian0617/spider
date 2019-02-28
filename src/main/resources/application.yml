@@ -1,0 +1,191 @@
+spring:
+  application:
+   name: 'spider'
+   proxy:
+    enable: true
+    type: 'http'
+    url: 127.0.0.1
+    port: 1087
+   cacheTid:
+    disable: true
+   sms:
+    appKey: A4nGucdzQq4wjcq44FNvIQ==
+    secret: 578c3deeafd01f7d8c64940b68cb5a9f
+    phones: ''
+  profiles:
+    active: test
+  aop:
+    proxy-target-class: true
+  http:
+    multipart:
+      max-file-size: 60MB
+      max-request-size: 180MB
+  kafka:
+    producer:
+      #bootstrap-servers: 47.52.21.206:9092
+      bootstrap-servers: 192.168.0.21:9092
+      acks: 1
+      client-id: spider
+      compression-type: gzip
+      retries: 3
+  redis:
+    #host: 47.75.95.16
+    host: 47.98.56.206
+    port: 6379
+ #   password: 81CafT11A
+    database: 1
+    pool:
+      max-active: 800   # 连接池最大连接数（使用负值表示没有限制）
+      max-wait: 500      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-idle: 800       # 连接池中的最大空闲连接
+      min-idle: 20       # 连接池中的最小空闲连接
+    timeout: 500        # 连接超时时间（毫秒）
+kafka:
+  topic:
+    market: 'blz-market-${spring.profiles.active}'
+    marketcap: 'blz-marketcap-${spring.profiles.active}'
+    kline: 'blz-kline-${spring.profiles.active}'
+    trade: 'blz-trade-${spring.profiles.active}'
+    real-trade: 'blz-real-trade-${spring.profiles.active}'
+    depth: 'blz-depth-${spring.profiles.active}'
+    first-buy-sell: 'blz-first-buy-sell-${spring.profiles.active}'
+    long-short: 'blz-long-short-${spring.profiles.active}'
+kline:
+  periods:
+    - '1min'
+    - '5min'
+    - '15min'
+    - '30min'
+    - '60min'
+    - '1day'
+    - '1mon'
+    - '1week'
+websocket: #api for websocket
+  bibox:
+    url: 'wss://push.bibox.com/' #websocket.bibox
+  binance:
+    #url: 'wss://stream.binance.com:9443/'
+    url: 'wss://stream2.binance.cloud/'
+  bitfinex:
+    url: 'wss://api.bitfinex.com/ws/2/'
+  bitmex:
+    url: 'wss://www.bitmex.com/realtime'
+  bitstamp:
+    url: 'wss://ws.pusherapp.com/app/'
+    appkey: 'de504dc5763aeef9ff52'
+  coin900:
+    url: 'wss://pusher.coin900.com/app/4a530ae5e37bb480c08b?protocol=7&client=js&version=2.2.0&flash=false'
+  fcoin:
+    url: 'wss://api.fcoin.com/v2/ws'
+  gate:
+    url: 'wss://ws.gate.io/v3/'
+  huobi:
+    #url: 'wss://api.huobi.pro/ws'
+    url: 'wss://www.hbg.com/-/s/pro/ws'
+  okex:
+    #url: 'wss://real.okex.com:10440/websocket/okexapi' #websocket.okex
+    #url: 'wss://real.okex.com:10441/websocket?compress=true' #websocket.okex
+    url: 'wss://real.okex.com:10442/ws/v3' #websocket.okex
+  quintar:
+    url: 'ws://ws.quintar.com/socket.io/?EIO=3&transport=websocket'
+    disable: true
+  topcoinws:
+    url: 'http://47.97.169.136:1903/'
+  zb:
+    url: 'wss://api.zb.com:9999/websocket'
+  coinbase:
+    url: 'wss://ws-feed.pro.coinbase.com'
+#  poloniex: ''
+rest: #api for rest
+  aex:
+    url: 'https://api.aex.com/'
+  allcoin:
+    url: 'https://api.allcoin.com/api/v1/'
+  aicoin:
+    url: 'https://www.aicoin.net.cn/'
+    disable: true
+  bcex:
+    url: 'https://www.bcex.ca/'
+  bibox:
+    url: 'https://api.bibox.com/'
+  bigone:
+    url: 'https://big.one/api/v2/'
+  binance:
+    #url: 'https://www.binance.com/'
+    url: 'https://www.binance.co/'
+  bitfinex:
+    url: 'https://api.bitfinex.com/'
+  bitflyer:
+    url: 'https://api.bitflyer.jp/'
+  bithumb:
+    url: 'https://api.bithumb.com/'
+  bitmex:
+    url: 'https://www.bitmex.com/api/v1/'
+  bitstamp:
+    url: 'https://www.bitstamp.net/api/v2/'
+  bittrex:
+    url: 'https://bittrex.com/api/'
+  bitz:
+    url: 'https://www.bit-z.com/'
+  cex:
+    url: 'http://api.cex.com/api/v1/'
+  coin900:
+    url: 'https://coin900.com/'
+  coinegg:
+    url: 'https://www.coinegg.com/'
+  coinmarketcap:
+    url: 'https://api.coinmarketcap.com/'
+  coinone:
+    url: 'https://api.coinone.co.kr/'
+  coinw:
+    url: 'https://www.coinw.com/'
+  fcoin:
+    url: 'https://api.fcoin.com/v2/'
+  gate:
+    url: 'http://data.gate.io/api2/1/'
+  huobi:
+    #url: 'https://api.huobi.pro/'
+    url: 'https://www.hbg.com/'
+  korbit:
+    url: 'https://api.korbit.co.kr/'
+  kraken:
+    url: 'https://api.kraken.com/0/public/'
+  kucoin:
+    url: 'https://kitchen-6.kucoin.com/'
+  liqui:
+    url: 'https://api.liqui.io/'
+  linkbitc:
+    url: 'http://api.linkbitc.com/'
+  mytoken:
+    disable: true
+    url: 'https://api2.mytoken.org/'
+  okex:
+    url: 'https://www.okex.com/'
+    #url: 'https://www.okb.com/'
+  poloniex:
+    url: 'https://www.poloniex.com/'
+  quintar:
+    disable: true
+    url: 'http://k.quintar.com/'
+  smsurl:
+    url: 'http://test1.bicoin.info/sms/sendMsg' #api for sms
+  ucoin:
+    url: 'https://open.ucoins.cc/'
+  zb:
+    url: 'http://api.zb.com/data/v1/'
+server:
+  port: 1902
+management:
+  security:
+    enabled: false
+security:
+  user:
+    name: admin
+    password: root
+  basic:
+    enabled: false
+monitor:
+  data-status-interval: 30000
+
+file-path:
+  binance: /init/binance/exchangeInfo.json

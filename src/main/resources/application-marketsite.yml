@@ -1,0 +1,58 @@
+#需要抓取的网站配置信息,启动时需配置--spring.profiles.active= dev,marketsite
+market-site:
+  allcoin:
+    id: 1
+    site: "https://api.allcoin.com/api/v1/ticker"
+    key-name: "allcoin" #用作存储 key 的第一部分
+    api-info:
+      ticker:
+        url: "https://api.allcoin.com/api/v1/ticker"
+        enable: true
+        protocol: "http"
+      depth:
+        url: "https://api.allcoin.com/api/v1/depth"
+        enable: true
+        protocol: "http"
+      kline:
+        url: "https://api.allcoin.com/api/v1/kline"
+        enable: true
+        protocol: "http"
+      trade-history:
+        url: "https://api.allcoin.com/api/v1/trades"
+        enable: true
+        protocol: "http"
+    enable: true #是否启用
+  okex:
+    id: 4
+    site: "https://www.okex.com"
+    key-name: "okex"
+    api-info:
+      ticker:
+        - url: ""
+          enable: true
+          protocol: "websocket"
+        - url: "https://www.okex.com/api/v1/ticker.do"
+          enable: true
+          protocol: "http"
+      depth:
+        - url: ""
+          enable: true
+          protocol: "websocket"
+        - url: "https://www.okex.com/api/v1/depth.do"
+          enable: true
+          protocol: "http"
+      kline:
+        - url: ""
+          enable: true
+          protocol: "websocket"
+        - url: "https://www.okex.com/api/v1/kline.do"
+          enable: true
+          protocol: "http"
+      trade-history:
+        - url: ""
+          enable: ""
+          protocol: "websocket"
+        - url: "https://www.okex.com/api/v1/trades.do"
+          enable: true
+          protocol: "http"
+    enable: true

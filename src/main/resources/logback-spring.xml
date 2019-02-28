@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <contextName>spider</contextName>
+    <property name="log.path" value="/logs/ailu/spider"/>
+    <!--输出到控制台-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!--输出到文件-->
+    <appender name="all" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/all.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/all.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/error.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/error.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>200MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <!-- 按交易所划分日志 -->
+    <!-- BiboxExchange -->
+    <appender name="BiboxExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/BiboxExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/BiboxExchange/BiboxExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.BiboxExchange" level="INFO">
+        <appender-ref ref="BiboxExchange"/>
+    </logger>
+
+    <!-- BigoneExchange -->
+    <appender name="BigoneExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/BigoneExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/BigoneExchange/BigoneExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.BigoneExchange" level="INFO">
+        <appender-ref ref="BigoneExchange"/>
+    </logger>
+
+    <!-- BinanceExchange -->
+    <appender name="BinanceExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/BinanceExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/BinanceExchange/BinanceExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.BinanceExchange" level="INFO">
+        <appender-ref ref="BinanceExchange"/>
+    </logger>
+
+    <!-- BitflyerExchange -->
+    <appender name="BitflyerExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/BitflyerExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/BitflyerExchange/BitflyerExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.BitflyerExchange" level="INFO">
+        <appender-ref ref="BitflyerExchange"/>
+    </logger>
+
+    <!-- BitHumbExchange -->
+    <appender name="BitHumbExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/BitHumbExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/BitHumbExchange/BitHumbExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.BitHumbExchange" level="INFO">
+        <appender-ref ref="BitHumbExchange"/>
+    </logger>
+
+    <!-- BittrexExchange -->
+    <appender name="BittrexExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/BittrexExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/BittrexExchange/BittrexExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.BittrexExchange" level="INFO">
+        <appender-ref ref="BittrexExchange"/>
+    </logger>
+
+    <!-- BitZExchange -->
+    <appender name="BitZExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/BitZExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/BitZExchange/BitZExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.BitZExchange" level="INFO">
+        <appender-ref ref="BitZExchange"/>
+    </logger>
+
+    <!-- Coin900Exchange -->
+    <appender name="Coin900Exchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/Coin900Exchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/Coin900Exchange/Coin900Exchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.Coin900Exchange" level="INFO">
+        <appender-ref ref="Coin900Exchange"/>
+    </logger>
+
+    <!-- CoinEggExchange -->
+    <appender name="CoinEggExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/CoinEggExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/CoinEggExchange/CoinEggExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.CoinEggExchange" level="INFO">
+        <appender-ref ref="CoinEggExchange"/>
+    </logger>
+
+    <!-- CoinoneExchange -->
+    <appender name="CoinoneExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/CoinoneExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/CoinoneExchange/CoinoneExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.CoinoneExchange" level="INFO">
+        <appender-ref ref="CoinoneExchange"/>
+    </logger>
+
+    <!-- CoinMarketCapExchange -->
+    <appender name="CoinMarketCapExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/CoinMarketCapExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/CoinMarketCapExchange/CoinMarketCapExchange.%d{yyyy-MM-dd_HH}.log.zip
+            </fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.CoinMarketCapExchange" level="INFO">
+        <appender-ref ref="CoinMarketCapExchange"/>
+    </logger>
+
+    <!-- CoinwExchange -->
+    <appender name="CoinwExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/CoinwExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/CoinwExchange/CoinwExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.CoinwExchange" level="INFO">
+        <appender-ref ref="CoinwExchange"/>
+    </logger>
+
+    <!-- GateExchange -->
+    <appender name="GateExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/GateExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/GateExchange/GateExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.GateExchange" level="INFO">
+        <appender-ref ref="GateExchange"/>
+    </logger>
+
+    <!-- KrakenExchange -->
+    <appender name="KrakenExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/KrakenExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/KrakenExchange/KrakenExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.KrakenExchange" level="INFO">
+        <appender-ref ref="KrakenExchange"/>
+    </logger>
+
+    <!-- LiquiExchange -->
+    <appender name="LiquiExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/LiquiExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/LiquiExchange/LiquiExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.LiquiExchange" level="INFO">
+        <appender-ref ref="LiquiExchange"/>
+    </logger>
+
+    <!-- PoloniexExchange -->
+    <appender name="PoloniexExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/PoloniexExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/PoloniexExchange/PoloniexExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.PoloniexExchange" level="INFO">
+        <appender-ref ref="PoloniexExchange"/>
+    </logger>
+
+    <!-- UCoinExchange -->
+    <appender name="UCoinExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/UCoinExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/UCoinExchange/UCoinExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.UCoinExchange" level="INFO">
+        <appender-ref ref="UCoinExchange"/>
+    </logger>
+
+    <!-- ZbExchange -->
+    <appender name="ZbExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/ZbExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/ZbExchange/ZbExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.ZbExchange" level="INFO">
+        <appender-ref ref="ZbExchange"/>
+    </logger>
+
+    <!-- BiBoxWebsocket -->
+    <appender name="BiBoxWebsocket" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/BiBoxWebsocket.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/BiBoxWebsocket/BiBoxWebsocket.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.BiBoxWebsocket" level="INFO">
+        <appender-ref ref="BiBoxWebsocket"/>
+    </logger>
+    <!-- BinanceWebsocket -->
+    <appender name="BinanceWebsocket" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/BinanceWebsocket.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/BinanceWebsocket/BinanceWebsocket.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.BinanceWebsocket" level="INFO">
+        <appender-ref ref="BinanceWebsocket"/>
+    </logger>
+    <!-- BitfinexWebsocket -->
+    <appender name="BitfinexWebsocket" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/BitfinexWebsocket.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/BitfinexWebsocket/BitfinexWebsocket.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.BitfinexWebsocket" level="INFO">
+        <appender-ref ref="BitfinexWebsocket"/>
+    </logger>
+    <!-- Coin900Websocket -->
+    <appender name="Coin900Websocket" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/Coin900Websocket.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/Coin900Websocket/Coin900Websocket.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.Coin900Websocket" level="INFO">
+        <appender-ref ref="Coin900Websocket"/>
+    </logger>
+    <!-- HuobiWebsocket -->
+    <appender name="HuobiWebsocket" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/HuobiWebsocket.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/HuobiWebsocket/HuobiWebsocket.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.HuobiWebsocket" level="INFO">
+        <appender-ref ref="HuobiWebsocket"/>
+    </logger>
+    <!-- OKExWebsocket -->
+    <appender name="OKExWebsocket" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/OKExWebsocket.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/OKExWebsocket/OKExWebsocket.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.OKExWebsocket" level="INFO">
+        <appender-ref ref="OKExWebsocket"/>
+    </logger>
+    <!-- PoloniexWebsocket -->
+    <appender name="PoloniexWebsocket" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/PoloniexWebsocket.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/PoloniexWebsocket/PoloniexWebsocket.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.PoloniexWebsocket" level="INFO">
+        <appender-ref ref="PoloniexWebsocket"/>
+    </logger>
+    <!-- ZbWebsocket -->
+    <appender name="ZbWebsocket" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/ZbWebsocket.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/ZbWebsocket/ZbWebsocket.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.ZbWebsocket" level="INFO">
+        <appender-ref ref="ZbWebsocket"/>
+    </logger>
+
+    <!-- KorbitExchange -->
+    <appender name="KorbitExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/KorbitExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/KorbitExchange/KorbitExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.KorbitExchange" level="INFO">
+        <appender-ref ref="KorbitExchange"/>
+    </logger>
+
+    <!-- AiCoinApp -->
+    <appender name="AiCoinApp" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/AiCoinApp.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/AiCoinApp/AiCoinApp.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.AiCoinApp" level="INFO">
+        <appender-ref ref="AiCoinApp"/>
+    </logger>
+
+    <!-- KafkaSender -->
+    <appender name="KafkaSender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/KafkaSender.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/KafkaSender/KafkaSender.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.utils.KafkaSender" level="INFO">
+        <appender-ref ref="KafkaSender"/>
+    </logger>
+
+    <!-- LinkbitcExchange -->
+    <appender name="LinkbitcExchange" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/LinkbitcExchange.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/LinkbitcExchange/LinkbitcExchange.%d{yyyy-MM-dd_HH}.log.zip</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.LinkbitcExchange" level="INFO">
+        <appender-ref ref="LinkbitcExchange"/>
+    </logger>
+
+    <!-- BinanceDepthWebsocket -->
+    <appender name="BinanceDepthWebsocket" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/BinanceDepthWebsocket.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/BinanceDepthWebsocket/BinanceDepthWebsocket.%d{yyyy-MM-dd_HH}.log.zip
+            </fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="com.al.dbspider.base.BinanceDepthWebsocket" level="INFO">
+        <appender-ref ref="BinanceDepthWebsocket"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="all"/>
+        <appender-ref ref="error"/>
+    </root>
+</configuration>

@@ -1,0 +1,148 @@
+spring:
+  application:
+    proxy:
+      enable: true
+      url: "127.0.0.1"
+      port: 1087
+  influxdb:
+    url: "http://localhost"
+    port: 8086
+    user-name: "root"
+    password: "admin"
+    data-base: "TopCoinDB"
+    retention-policy: "autogen"
+    gzip: true
+    connect-timeout: 10
+    read-timeout: 30
+    write-timeout: 10
+  kafka:
+    producer:
+      bootstrap-servers: 47.75.116.175:9092
+  redis:
+    database: 0
+    host: "localhost"
+    pool:
+      max-active: 200
+      max-wait: 500
+      min-idle: 20
+      max-idle: 200
+    timeout: 1000
+    block-when-exhausted: false
+
+logging:
+  #config: file:config/logback-spring.xml
+  level:
+    root: info
+    com.al.dbspider: info
+api:
+  socket: http://47.97.169.136:1903/
+
+websocket: #api for websocket
+  bibox:
+    disable: true
+    depth: false
+  binance:
+    kline: false
+#    trade: false
+#    market: false
+    disable: true
+    depth: false
+  bitfinex:
+    disable: true
+    depth: false
+  bitmex:
+    disable: true
+    depth: false
+  bitstamp:
+    disable: false
+    depth: false
+  coin900:
+    disable: true
+  fcoin:
+    disable: true
+    depth: false
+  gate:
+    disable: true
+    depth: false
+  huobi:
+    disable: true
+    depth: false
+  okex:
+    disable: true
+    depth: false
+  quintar:
+    disable: true
+  topcoinws:
+    disable: true
+  zb:
+    disable: true
+    depth: false
+rest: #api for rest
+  aex:
+    disable: true
+  allcoin:
+    disable: true
+  aicoin:
+    disable: true
+  bcex:
+    disable: true
+  bibox:
+    disable: true
+  bigone:
+    disable: true
+  binance:
+    disable: true
+  bitflyer:
+    disable: true
+  bithumb:
+    disable: true
+  bitmex:
+    disable: true
+  bittrex:
+    disable: true
+  bitz:
+    disable: true
+  cex:
+    disable: true
+  coin900:
+    disable: true
+  coinegg:
+    disable: true
+  coinmarketcap:
+    disable: true
+  coinone:
+    disable: true
+  coinw:
+    disable: true
+  fcoin:
+    disable: true
+  gate:
+    disable: true
+  huobi:
+    disable: true
+  korbit:
+    disable: true
+  kraken:
+    disable: true
+  kucoin:
+    disable: true
+  liqui:
+    disable: true
+  linkbitc:
+    disable: true
+  mytoken:
+    disable: true
+  okex:
+    disable: true
+  poloniex:
+    disable: true
+  quintar:
+    disable: true
+  smsurl:
+    disable: true
+  ucoin:
+    disable: true
+  zb:
+    disable: true
+market:
+  push: false

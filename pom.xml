@@ -66,7 +66,7 @@
         <webmagic.version>0.7.3</webmagic.version>
         <oh-my-email.version>0.0.3</oh-my-email.version>
         <retrofit-fastjson-converter>2.1.0</retrofit-fastjson-converter>
-        <squareup-retrofit2.version>2.3.0</squareup-retrofit2.version>
+        <squareup-retrofit2.version>2.5.0</squareup-retrofit2.version>
         <redis>2.9.0</redis>
     </properties>
 
